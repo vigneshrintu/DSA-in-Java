@@ -1,0 +1,6 @@
+->In linked list nth last node or nth node from the end is the (size-n+1)th node
+form the beginning
+->Cycle removal algorithm doesnot work for circular linked list where the fast and slow meets 
+at head node and that linked list length is equal  to the cycle length.
+->If there is only one object and you want to call static method of that class
+on that object then just do myMethod() in main and it will be triggered.
