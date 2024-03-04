@@ -211,35 +211,47 @@ public class LinkedList {
             fast = fast.next.next;
             if (slow == fast) {
                 cycleExists = true;
-                return;
+                break;
             }
-            if (!cycleExists) {
-                return;
-            }
-            // if cycle exists then shift slow to head and start incrementing both pointers
-            // by one
-            slow = head;
-            Node lastNode = null;
-            while (slow != fast) {
-                lastNode = fast;
-                // slow and fast will meet at intersection of loop when we increment them by one
-                // so store the fast in lastNode so that you can later put lastNode.next to null
-                // and break the cycle by removing the node which is in intersection
-                slow = slow.next;
-                fast = fast.next;
-            }
-            lastNode.next = null;
         }
+        if (!cycleExists) {
+            return;
+        }
+        // if cycle exists then shift slow to head and start incrementing both pointers
+        // by one
+        slow = head;
+        Node lastNode = null;
+        while (slow != fast) {
+            System.out.println("slow is at node : " + slow.data + " and fast is at node : " + fast.data);
+            lastNode = fast;
+            // slow and fast will meet at cycle beginning node of the linked list when we
+            // increment them by
+            // one so the loop breaks
+            // so store fast in lastNode because in the last loop iteration fast will be at
+            // lastNode
+            // lastNode here is the node that is at the end of the cycle
+            // if lastNode.next becomes null then it breaks the cycle in the linked list
+            slow = slow.next;
+            fast = fast.next;
+        }
+        System.out.println("slow is at node : " + slow.data + " and fast is at node : " + fast.data);
+        lastNode.next = null;
+
     }
 
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
 
-        ll.add(1, 0);
-        ll.add(2, 1);
-        ll.add(99, 2);
+        ll.addFirst(7);
+        ll.addFirst(6);
+        ll.addFirst(5);
+        ll.addFirst(4);
+        ll.addFirst(3);
+        ll.addFirst(2);
+        ll.addFirst(1);
         ll.display();
-        System.out.println(ll.size);
+        ll.head.next.next.next.next.next.next.next = ll.head.next.next.next;
+        ll.removeCycleInLL();
 
     }
 

@@ -4,3 +4,7 @@ form the beginning
 at head node and that linked list length is equal  to the cycle length.
 ->If there is only one object and you want to call static method of that class
 on that object then just do myMethod() in main and it will be triggered.
+->we use head of the linked list as top of the stack if we have to implement the stack using linked list
+->If we use a data structure like an array and we continously starts to remove or add elements into it 
+inside a loop whose length is the size of the data structure (array here) then its size is not constant since
+we are adding or removing elements into it.So loop length wont be constant and changes continously.
