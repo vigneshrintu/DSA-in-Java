@@ -1,7 +1,8 @@
 import java.util.*;
 
-public class SubArr {
-    static void maxSumBrute(int arr[]) {
+public class KadanesAlgorithm {
+    public static void maxSumBrute(int arr[]) {
+        //call this function and see console to understand it clearly
         int totalSubArrs = 0;
         int maxSum = Integer.MIN_VALUE;
         int currSum = 0;
@@ -57,6 +58,12 @@ public class SubArr {
     }
 
     public static void kadanesAlgo(int arr[]) {
+        /*
+            find the sum of all elements in the array and during this process:
+                if sum<0 then put sum=0
+                and
+                always check if the sum>maxSum and update 
+        */
         int sum = 0;
         int maxSum = Integer.MIN_VALUE;
         int start = -1;
@@ -78,11 +85,7 @@ public class SubArr {
                 // newSubArray ends when maxSum is updated lastly
                 end = i;
             }
-            /*
-             * Until sum>0 do sum += arr[i] and if incase at any place sum<0 then put sum =
-             * 0 and during this whole process
-             * update maxSum whenever sum>maxSum
-             */
+            
 
         }
         System.out.println(maxSum + " is maxSum");
@@ -92,8 +95,29 @@ public class SubArr {
         // Kadanes Algo won't work for an array with all negative numbers.
     }
 
+    public static void letmeloveyou(int arr[],int k){
+        int sum=0;
+        int prevlength=0;
+        
+        for(int i=0;i<arr.length;i++){
+            for(int j=i;j<arr.length;j++){
+                sum=0;
+                for(int z=i;z<=j;z++){
+                    sum+=arr[z];
+                }
+                if(sum==k && prevlength<=j-i+1){
+                    prevlength=j-i+1;
+                }
+            }
+        }
+        System.out.println(prevlength);
+    }
+
+
+
     public static void main(String[] args) {
-        int arr[] = { 1, 2, 3, 4, 5 };
-        SubArr.printSub(arr);
+        int arr[] = { 1, 2,3,1,1,1,2,-1,-1,1,-1,1,-1,1,-1,1,5};
+        letmeloveyou(arr,3);
+        
     }
 }

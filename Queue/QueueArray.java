@@ -31,7 +31,7 @@ public class QueueArray {
             }
             if (front == -1) {
                 front = 0;
-                // If adding first element into the queue then put front to 0 form -1
+                // If adding first element into the queue then put front to 0 from -1
             }
             rear = (rear + 1) % size;
             arr[rear] = data;

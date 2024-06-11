@@ -188,10 +188,11 @@ public class LinkedList {
             currentNode = nextNode;
         }
         Node rightHalf = previousNode;
-        // comparing the right and left halves of linkedlist until one of the head
-        // becomes null
+        // comparing the right and left halves of linkedlist until rightHalf becomes null
+        //BUT SINCE IT'S NOT CLEAR WHY ONLY RIGHTHALF CHANGING THE CONDITION TO BELOW SO THAT IT IS EASIER TO REMEMBER
+        
         Node leftHalf = head;
-        while (rightHalf != null) {
+        while (rightHalf != null && leftHalf!=null) {
             if (rightHalf.data != leftHalf.data) {
                 return false;
             }
@@ -238,6 +239,38 @@ public class LinkedList {
         lastNode.next = null;
 
     }
+
+    public int findLen(Node slow,Node fast)
+    {
+        //this is just a helper function of lengthOfLoop function
+        int length = 0;
+        do
+        {
+            fast = fast.next;
+            length++;
+        } while (fast != slow);
+
+        return length;
+    }
+    
+
+    public int lengthOfLoop(Node head) 
+    {
+        Node slow = head, fast = head;
+        while (fast!=null && fast.next!=null) 
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (fast == slow)
+            /*
+            when the fast==slow that means loop exists and let the slow stay at that node where slow==fast and move fast by one node at a time and whenever fast == slow then the return the length counter
+            */
+                return findLen(slow,fast);
+        }
+        return 0;
+    }
+
 
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
